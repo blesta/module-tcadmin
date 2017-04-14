@@ -497,7 +497,7 @@ class Tcadmin extends Module
      */
     public function addModuleRow(array &$vars)
     {
-        $meta_fields = ['server_name', 'host_name', 'user_name', 'port', 'use_ssl', 'password', 'account_limit'];
+        $meta_fields = ['server_name', 'host_name', 'user_name', 'port', 'use_ssl', 'password'];
         $encrypted_fields = ['user_name', 'port', 'password'];
 
         // Set unspecified checkboxes
@@ -539,7 +539,7 @@ class Tcadmin extends Module
      */
     public function editModuleRow($module_row, array &$vars)
     {
-        $meta_fields = ['server_name', 'host_name', 'user_name', 'port', 'use_ssl', 'password', 'account_limit'];
+        $meta_fields = ['server_name', 'host_name', 'user_name', 'port', 'use_ssl', 'password'];
         $encrypted_fields = ['user_name', 'port', 'password'];
 
         // Set unspecified checkboxes
