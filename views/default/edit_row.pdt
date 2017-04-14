@@ -1,7 +1,7 @@
 		<?php
 		$this->Widget->clear();
 		$this->Widget->setLinkButtons(array());
-		$this->Widget->create($this->_("Tcadmin.add_row.box_title", true));
+		$this->Widget->create($this->_("Tcadmin.edit_row.box_title", true));
 		?>
 		<div class="inner">
 			<?php
@@ -9,7 +9,7 @@
 			$this->Form->fieldHidden("account_count", $this->Html->ifSet($vars->account_count, 0));
 			?>
 			<div class="title_row first">
-				<h3><?php $this->_("Tcadmin.add_row.basic_title");?></h3>
+				<h3><?php $this->_("Tcadmin.edit_row.basic_title");?></h3>
 			</div>
 			<div class="pad">
 				<ul>
@@ -53,7 +53,7 @@
 			</div>
 
 
-			<div class="button_row"><a class="btn_right submit" href="#"><?php $this->_("Tcadmin.edit_row.add_btn");?></a></div>
+			<div class="button_row"><a class="btn btn-primary pull-right submit" href="#"><?php $this->_("Tcadmin.edit_row.add_btn");?></a></div>
 			<?php
 			$this->Form->end();
 			?>
