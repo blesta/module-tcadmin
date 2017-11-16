@@ -15,7 +15,7 @@ class Tcadmin extends Module
     /**
      * @var string The version of this module
      */
-    private static $version = '1.0.0';
+    private static $version = '1.1.0';
     /**
      * @var string The authors of this module
      */
@@ -757,10 +757,35 @@ class Tcadmin extends Module
      *
      * @param stdClass $package A stdClass object representing the selected package
      * @param array $vars An array of user supplied info to satisfy the request
-     * @param boolean $edit True if this is an edit, false otherwise
      * @return boolean True if the service validates, false otherwise. Sets Input errors when false.
      */
-    public function validateService($package, array $vars = null, $edit = false)
+    public function validateService($package, array $vars = null)
+    {
+        $this->Input->setRules($this->getServiceRules($vars));
+        return $this->Input->validates($vars);
+    }
+
+    /**
+     * Attempts to validate an existing service against a set of service info updates. Sets Input errors on failure.
+     *
+     * @param stdClass $service A stdClass object representing the service to validate for editing
+     * @param array $vars An array of user-supplied info to satisfy the request
+     * @return bool True if the service update validates or false otherwise. Sets Input errors when false.
+     */
+    public function validateServiceEdit($service, array $vars = null)
+    {
+        $this->Input->setRules($this->getServiceRules($vars, true));
+        return $this->Input->validates($vars);
+    }
+
+    /**
+     * Returns the rule set for adding/editing a service
+     *
+     * @param array $vars A list of input vars
+     * @param bool $edit True to get the edit rules, false for the add rules
+     * @return array Service rules
+     */
+    private function getServiceRules(array $vars = null, $edit = false)
     {
         $rules = [
             'hostname' => [
@@ -830,8 +855,7 @@ class Tcadmin extends Module
             unset($rules['user_password']);
         }
 
-        $this->Input->setRules($rules);
-        return $this->Input->validates($vars);
+        return $rules;
     }
 
     /**
@@ -1009,7 +1033,7 @@ class Tcadmin extends Module
     {
         $row = $this->getModuleRow();
 
-        $this->validateService($package, $vars, true);
+        $this->validateServiceEdit($service, $vars);
 
         if ($this->Input->errors()) {
             return;
