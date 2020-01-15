@@ -226,37 +226,6 @@ class Tcadmin extends Module
     }
 
     /**
-     * Returns an array of key values for fields stored for a module, package,
-     * and service under this module, used to substitute those keys with their
-     * actual module, package, or service meta values in related emails.
-     *
-     * @return array A multi-dimensional array of key/value pairs where each key is one of 'module', 'package',
-     *  or 'service' and each value is a numerically indexed array of key values that match meta fields under
-     *  that category.
-     * @see Modules::addModuleRow()
-     * @see Modules::editModuleRow()
-     * @see Modules::addPackage()
-     * @see Modules::editPackage()
-     * @see Modules::addService()
-     * @see Modules::editService()
-     */
-    public function getEmailTags()
-    {
-        return [
-            'module' => ['host_name', 'port'],
-            'package' => ['supported_servers', 'server_type', 'start', 'priority', 'startup'],
-            'service' => [
-                'client_package_id',
-                'hostname',
-                'rcon_password',
-                'private_password',
-                'user_name',
-                'user_password'
-            ]
-        ];
-    }
-
-    /**
      * Validates input data when attempting to add a package, returns the meta
      * data to save when adding a package. Performs any action required to add
      * the package on the remote server. Sets Input errors on failure,

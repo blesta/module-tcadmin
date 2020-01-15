@@ -8,6 +8,9 @@
             "url": "http://www.blesta.com"
         }
     ],
+    "package": {
+        "name_key": "hostname"
+    },
     "service": {
         "name_key": "hostname"
     },
@@ -17,7 +20,16 @@
         "row_key": "server_name",
         "group": "Tcadmin.module_group"
     },
-    "package": {
-        "name_key": "hostname"
+    "email_tags": {
+        "module": ["host_name", "port"],
+        "package": ["supported_servers", "server_type", "start", "priority", "startup"],
+        "service": [
+            "client_package_id",
+            "hostname",
+            "rcon_password",
+            "private_password",
+            "user_name",
+            "user_password"
+        ]
     }
 }
