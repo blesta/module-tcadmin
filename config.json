@@ -1,0 +1,23 @@
+{
+    "version": "1.5.0",
+    "name": "Tcadmin.name",
+    "description": "Tcadmin.description",
+    "authors": [
+        {
+            "name": "Phillips Data, Inc.",
+            "url": "http://www.blesta.com"
+        }
+    ],
+    "service": {
+        "name_key": "hostname"
+    },
+    "module": {
+        "row": "Tcadmin.module_row",
+        "rows": "Tcadmin.module_row_plural",
+        "row_key": "server_name",
+        "group": "Tcadmin.module_group"
+    },
+    "package": {
+        "name_key": "hostname"
+    }
+}
