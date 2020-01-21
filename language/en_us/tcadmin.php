@@ -4,6 +4,7 @@
  */
 // Basics
 $lang['Tcadmin.name'] = "Tcadmin";
+$lang['Tcadmin.description'] = "TCAdmin the game hosting control panel was designed from the ground up to help today's Game Service Provider save time and money, while allowing end users complete control over their servers.";
 $lang['Tcadmin.module_row'] = "Server";
 $lang['Tcadmin.module_row_plural'] = "Servers";
 $lang['Tcadmin.module_group'] = "Server Group";
