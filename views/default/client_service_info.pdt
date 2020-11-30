@@ -6,9 +6,9 @@
 					<th><?php $this->_("Tcadmin.service_info.hostname");?></th>
 					<th><?php $this->_("Tcadmin.service_info.rcon_password");?></th>
 					<th><?php $this->_("Tcadmin.service_info.private_password");?></th>
-							<th><?php $this->_("Tcadmin.service_info.server");?></th>
-							<th><?php $this->_("Tcadmin.service_info.username");?></th>
-							<th><?php $this->_("Tcadmin.service_info.password");?></th>
+                    <th><?php $this->_("Tcadmin.service_info.server");?></th>
+                    <th><?php $this->_("Tcadmin.service_info.username");?></th>
+                    <th><?php $this->_("Tcadmin.service_info.password");?></th>
 					<th><?php $this->_("Tcadmin.service_info.options");?></th>
 				</tr>
 			</thead>
@@ -23,7 +23,7 @@
 					<td><?php $this->Html->_($service_fields->user_password);?></td>
 					<td>
 						<?php
-				$this->Form->create($this->Html->safe("//" . $this->Html->ifSet($module_row->meta->host_name) . ":".$this->Html->ifSet($module_row->meta->port)), array('target' => "_blank"));
+				        $this->Form->create($this->Html->safe("//" . $this->Html->ifSet($module_row->meta->host_name) . ":".$this->Html->ifSet($module_row->meta->port)), array('target' => "_blank"));
 						$this->Form->fieldHidden("user", $this->Html->ifSet($service_fields->username));
 						$this->Form->fieldHidden("password", $this->Html->ifSet($service_fields->password));
 						?>
