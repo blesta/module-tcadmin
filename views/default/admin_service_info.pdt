@@ -1,23 +1,23 @@
 	<table class="table">
 		<tr class="heading_row">
 			<td class="fixed_small center border_none"><span class="paymnt_arrow"></span></td>
-					<td class="border_left"><?php $this->_("Tcadmin.service_info.hostname");?></td>
-					<td><?php $this->_("Tcadmin.service_info.rcon_password");?></td>
-					<td><?php $this->_("Tcadmin.service_info.private_password");?></td>
-					<td><?php $this->_("Tcadmin.service_info.server");?></td>
-					<td><?php $this->_("Tcadmin.service_info.username");?></td>
-					<td><?php $this->_("Tcadmin.service_info.password");?></td>
-					<td class="last"><?php $this->_("Tcadmin.service_info.options");?></td>
+            <td class="border_left"><?php $this->_("Tcadmin.service_info.hostname");?></td>
+            <td><?php $this->_("Tcadmin.service_info.rcon_password");?></td>
+            <td><?php $this->_("Tcadmin.service_info.private_password");?></td>
+            <td><?php $this->_("Tcadmin.service_info.server");?></td>
+            <td><?php $this->_("Tcadmin.service_info.username");?></td>
+            <td><?php $this->_("Tcadmin.service_info.password");?></td>
+            <td class="last"><?php $this->_("Tcadmin.service_info.options");?></td>
 		</tr>
 		<tr>
 			<td></td>
-					<td><?php $this->Html->_($service_fields->hostname);?></td>
-					<td><?php $this->Html->_($service_fields->rcon_password);?></td>
-					<td><?php $this->Html->_($service_fields->private_password);?></td>
-					<td><?php $this->Html->_($module_row->meta->host_name);?></td>
-					<td><?php $this->Html->_($service_fields->user_name);?></td>
-					<td><?php $this->Html->_($service_fields->user_password);?></td>
-	<td>
+            <td><?php $this->Html->_($service_fields->hostname);?></td>
+            <td><?php $this->Html->_($service_fields->rcon_password);?></td>
+            <td><?php $this->Html->_($service_fields->private_password);?></td>
+            <td><?php $this->Html->_($module_row->meta->host_name);?></td>
+            <td><?php $this->Html->_($service_fields->user_name);?></td>
+            <td><?php $this->Html->_($service_fields->user_password);?></td>
+	        <td>
 				<?php
 				$this->Form->create($this->Html->safe("//" . $this->Html->ifSet($module_row->meta->host_name) . ":".$this->Html->ifSet($module_row->meta->port)), array('target' => "_blank"));
 				$this->Form->fieldHidden("user", $this->Html->ifSet($service_fields->_username));
