@@ -493,7 +493,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                $this->Html->ifSet($vars->hostname, $this->Html->ifSet($vars->hostname)),
+                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -531,7 +531,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                $this->Html->ifSet($vars->hostname, $this->Html->ifSet($vars->hostname)),
+                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -569,7 +569,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                $this->Html->ifSet($vars->hostname, $this->Html->ifSet($vars->hostname)),
+                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -581,7 +581,7 @@ class Tcadmin extends Module
         $user_name->attach(
             $fields->fieldText(
                 'user_name',
-                $this->Html->ifSet($vars->user_name, $this->Html->ifSet($vars->user_name)),
+                (isset($vars->user_name) ? $vars->user_name : ($vars->user_name ?? null)),
                 ['id' => 'user_name']
             )
         );
