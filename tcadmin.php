@@ -143,7 +143,7 @@ class Tcadmin extends Module
         if ($module_row) {
             $configured_servers = $this->getConfiguredServers(
                 $module_row,
-                $this->Html->ifSet($vars->meta['server_type'], 'game')
+                (isset($vars->meta['server_type']) ? $vars->meta['server_type'] : 'game')
             );
         }
 
@@ -155,7 +155,7 @@ class Tcadmin extends Module
                     'game' => Language::_('Tcadmin.package_fields.game_server', true),
                     'voice' => Language::_('Tcadmin.package_fields.voice_server', true),
                 ],
-                $this->Html->ifSet($vars->meta['server_type']),
+                (isset($vars->meta['server_type']) ? $vars->meta['server_type'] : null),
                 ['id' => 'server_type', 'onChange' => 'fetchModuleOptions()']
             )
         );
@@ -169,7 +169,7 @@ class Tcadmin extends Module
             $fields->fieldSelect(
                 'meta[supported_servers]',
                 $configured_servers,
-                $this->Html->ifSet($vars->meta['supported_servers']),
+                (isset($vars->meta['supported_servers']) ? $vars->meta['supported_servers'] : null),
                 ['id' => 'supported_servers']
             )
         );
@@ -182,7 +182,7 @@ class Tcadmin extends Module
                     '1' => Language::_('Tcadmin.package_fields.yes', true),
                     '0' => Language::_('Tcadmin.package_fields.no', true),
                 ],
-                $this->Html->ifSet($vars->meta['start']),
+                (isset($vars->meta['start']) ? $vars->meta['start'] : null),
                 ['id' => 'start']
             )
         );
@@ -201,7 +201,7 @@ class Tcadmin extends Module
                     'Idle' => Language::_('Tcadmin.package_fields.priority.idle', true),
                     'RealTime' => Language::_('Tcadmin.package_fields.priority.realtime', true),
                 ],
-                $this->Html->ifSet($vars->meta['priority']),
+                (isset($vars->meta['priority']) ? $vars->meta['priority'] : null),
                 ['id' => 'priority']
             )
         );
@@ -216,7 +216,7 @@ class Tcadmin extends Module
                     'Manual' => Language::_('Tcadmin.package_fields.startup.manual', true),
                     'Disabled' => Language::_('Tcadmin.package_fields.startup.disabled', true),
                 ],
-                $this->Html->ifSet($vars->meta['startup']),
+                (isset($vars->meta['startup']) ? $vars->meta['startup'] : null),
                 ['id' => 'startup']
             )
         );
@@ -493,7 +493,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                $this->Html->ifSet($vars->hostname, $this->Html->ifSet($vars->hostname)),
+                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -531,7 +531,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                $this->Html->ifSet($vars->hostname, $this->Html->ifSet($vars->hostname)),
+                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -569,7 +569,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                $this->Html->ifSet($vars->hostname, $this->Html->ifSet($vars->hostname)),
+                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -581,7 +581,7 @@ class Tcadmin extends Module
         $user_name->attach(
             $fields->fieldText(
                 'user_name',
-                $this->Html->ifSet($vars->user_name, $this->Html->ifSet($vars->user_name)),
+                (isset($vars->user_name) ? $vars->user_name : ($vars->user_name ?? null)),
                 ['id' => 'user_name']
             )
         );
