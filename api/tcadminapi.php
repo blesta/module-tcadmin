@@ -1,4 +1,5 @@
 <?php
+use Blesta\Core\Util\Common\Traits\Container;
 
 /**
  * Tcadmin API
@@ -11,6 +12,9 @@
  */
 class Tcadminapi
 {
+    // Load traits
+    use Container;
+
     private $user_name;
     private $password;
     private $host_name;
@@ -27,6 +31,10 @@ class Tcadminapi
         $this->host_name = $host_name;
         $this->port = $port;
         $this->use_ssl = $use_ssl;
+
+        // Initialize logger
+        $logger = $this->getFromContainer('logger');
+        $this->logger = $logger;
     }
 
     /**
@@ -38,6 +46,7 @@ class Tcadminapi
     private function apiRequest($function, array $params)
     {
         $curl = curl_init();
+
         $params["tcadmin_username"] = $this->user_name;
         $params["tcadmin_password"] = $this->password;
         $params["function"] = $function;
@@ -53,20 +62,35 @@ class Tcadminapi
         }
         $url .= $this->host_name . ":" . $this->port . "/billingapi.aspx";
 
-
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Accept: application/xml", " Accept-Charset: UTF-8"));
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Expect:', 'Accept-Charset: UTF-8'));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        if (Configure::get('Blesta.curl_verify_ssl')) {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, true);
+        } else {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
         $host_name_output = "<?xml version='1.0'?><document>";
         $host_name_output .= curl_exec($curl);
         $host_name_output .= "</document>";
         $error = curl_error($curl);
+
+        if (!empty($error)) {
+            $this->logger->error($error);
+        }
+
         curl_close($curl);
+
         if ($host_name_output != false) {
             $response = json_decode(json_encode(simplexml_load_string($host_name_output)), true);
+
             return $response;
         }
 
