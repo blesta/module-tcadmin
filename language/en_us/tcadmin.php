@@ -9,6 +9,8 @@ $lang['Tcadmin.module_row'] = "Server";
 $lang['Tcadmin.module_row_plural'] = "Servers";
 $lang['Tcadmin.module_group'] = "Server Group";
 
+$lang['Tcadmin.back_to_manage'] = 'Back';
+
 // Module management
 $lang['Tcadmin.add_module_row'] = "Add Server";
 $lang['Tcadmin.add_module_group'] = "Add Server Group";

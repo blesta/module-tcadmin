@@ -1,4 +1,5 @@
 <?php
+
 use Blesta\Core\Util\Common\Traits\Container;
 
 /**
@@ -47,26 +48,25 @@ class Tcadminapi
     {
         $curl = curl_init();
 
-        $params["tcadmin_username"] = $this->user_name;
-        $params["tcadmin_password"] = $this->password;
-        $params["function"] = $function;
-        $params["response_type"] = "xml";
+        $params['tcadmin_username'] = $this->user_name;
+        $params['tcadmin_password'] = $this->password;
+        $params['function'] = $function;
+        $params['response_type'] = 'xml';
         $params = http_build_query($params);
-        $url = "";
+        $url = '';
 
-        if ($this->use_ssl == "true") {
-            $url .= "https://";
-        } else if ($this->use_ssl == "false") {
-            $url .= "http://";
-
+        if ($this->use_ssl == 'true') {
+            $url .= 'https://';
+        } elseif ($this->use_ssl == 'false') {
+            $url .= 'http://';
         }
-        $url .= $this->host_name . ":" . $this->port . "/billingapi.aspx";
+        $url .= $this->host_name . ':' . $this->port . '/billingapi.aspx';
 
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array("Accept: application/xml", " Accept-Charset: UTF-8"));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Accept: application/xml', ' Accept-Charset: UTF-8']);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Expect:', 'Accept-Charset: UTF-8'));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Expect:', 'Accept-Charset: UTF-8']);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         if (Configure::get('Blesta.curl_verify_ssl')) {
@@ -79,7 +79,7 @@ class Tcadminapi
 
         $host_name_output = "<?xml version='1.0'?><document>";
         $host_name_output .= curl_exec($curl);
-        $host_name_output .= "</document>";
+        $host_name_output .= '</document>';
         $error = curl_error($curl);
 
         if (!empty($error)) {
@@ -164,7 +164,7 @@ class Tcadminapi
      */
     public function createAccount(array $params)
     {
-        return $this->apiRequest("AddPendingSetup", $params);
+        return $this->apiRequest('AddPendingSetup', $params);
     }
 
     /**
@@ -175,7 +175,7 @@ class Tcadminapi
 
     public function startServer($client_package_id)
     {
-        return $this->apiRequest("StartByBillingId", array("client_package_id" => $client_package_id));
+        return $this->apiRequest('StartByBillingId', ['client_package_id' => $client_package_id]);
     }
 
     /**
@@ -186,7 +186,7 @@ class Tcadminapi
 
     public function stopServer($client_package_id)
     {
-        return $this->apiRequest("StopByBillingId", array("client_package_id" => $client_package_id));
+        return $this->apiRequest('StopByBillingId', ['client_package_id' => $client_package_id]);
     }
 
     /**
@@ -197,7 +197,7 @@ class Tcadminapi
 
     public function restartServer($client_package_id)
     {
-        return $this->apiRequest("RestartByBillingId", array("client_package_id" => $client_package_id));
+        return $this->apiRequest('RestartByBillingId', ['client_package_id' => $client_package_id]);
     }
 
     /**
@@ -208,7 +208,7 @@ class Tcadminapi
 
     public function suspendServer($client_package_id)
     {
-        return $this->apiRequest("SuspendGameAndVoiceByBillingID", array("client_package_id" => $client_package_id));
+        return $this->apiRequest('SuspendGameAndVoiceByBillingID', ['client_package_id' => $client_package_id]);
     }
 
     /**
@@ -219,7 +219,7 @@ class Tcadminapi
 
     public function unSuspendServer($client_package_id)
     {
-        return $this->apiRequest("UnSuspendGameAndVoiceByBillingID", array("client_package_id" => $client_package_id));
+        return $this->apiRequest('UnSuspendGameAndVoiceByBillingID', ['client_package_id' => $client_package_id]);
     }
 
     /**
@@ -230,7 +230,7 @@ class Tcadminapi
 
     public function deleteServer($client_package_id)
     {
-        return $this->apiRequest("DeleteGameAndVoiceByBillingID", array("client_package_id" => $client_package_id));
+        return $this->apiRequest('DeleteGameAndVoiceByBillingID', ['client_package_id' => $client_package_id]);
     }
 
     /**
@@ -240,7 +240,7 @@ class Tcadminapi
 
     public function getGameServers()
     {
-        return $this->apiRequest("GetSupportedGames", array());
+        return $this->apiRequest('GetSupportedGames', []);
     }
 
     /**
@@ -250,7 +250,7 @@ class Tcadminapi
 
     public function getVoiceServers()
     {
-        return $this->apiRequest("GetSupportedVoiceServers", array());
+        return $this->apiRequest('GetSupportedVoiceServers', []);
     }
 
     /**
@@ -277,8 +277,6 @@ class Tcadminapi
      */
     public function updateUserSettings(array $params)
     {
-        return $this->apiRequest("UpdateSettings", $params);
+        return $this->apiRequest('UpdateSettings', $params);
     }
-
 }
-

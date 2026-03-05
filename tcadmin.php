@@ -1,4 +1,5 @@
 <?php
+
 use Blesta\Core\Util\Validate\Server;
 
 /**
@@ -143,7 +144,7 @@ class Tcadmin extends Module
         if ($module_row) {
             $configured_servers = $this->getConfiguredServers(
                 $module_row,
-                (isset($vars->meta['server_type']) ? $vars->meta['server_type'] : 'game')
+                ($vars->meta['server_type'] ?? 'game')
             );
         }
 
@@ -155,7 +156,7 @@ class Tcadmin extends Module
                     'game' => Language::_('Tcadmin.package_fields.game_server', true),
                     'voice' => Language::_('Tcadmin.package_fields.voice_server', true),
                 ],
-                (isset($vars->meta['server_type']) ? $vars->meta['server_type'] : null),
+                ($vars->meta['server_type'] ?? null),
                 ['id' => 'server_type', 'onChange' => 'fetchModuleOptions()']
             )
         );
@@ -169,7 +170,7 @@ class Tcadmin extends Module
             $fields->fieldSelect(
                 'meta[supported_servers]',
                 $configured_servers,
-                (isset($vars->meta['supported_servers']) ? $vars->meta['supported_servers'] : null),
+                ($vars->meta['supported_servers'] ?? null),
                 ['id' => 'supported_servers']
             )
         );
@@ -178,11 +179,12 @@ class Tcadmin extends Module
         $start = $fields->label(Language::_('Tcadmin.package_fields.start', true), 'start');
         $start->attach(
             $fields->fieldSelect(
-                'meta[start]', [
+                'meta[start]',
+                [
                     '1' => Language::_('Tcadmin.package_fields.yes', true),
                     '0' => Language::_('Tcadmin.package_fields.no', true),
                 ],
-                (isset($vars->meta['start']) ? $vars->meta['start'] : null),
+                ($vars->meta['start'] ?? null),
                 ['id' => 'start']
             )
         );
@@ -201,7 +203,7 @@ class Tcadmin extends Module
                     'Idle' => Language::_('Tcadmin.package_fields.priority.idle', true),
                     'RealTime' => Language::_('Tcadmin.package_fields.priority.realtime', true),
                 ],
-                (isset($vars->meta['priority']) ? $vars->meta['priority'] : null),
+                ($vars->meta['priority'] ?? null),
                 ['id' => 'priority']
             )
         );
@@ -216,7 +218,7 @@ class Tcadmin extends Module
                     'Manual' => Language::_('Tcadmin.package_fields.startup.manual', true),
                     'Disabled' => Language::_('Tcadmin.package_fields.startup.disabled', true),
                 ],
-                (isset($vars->meta['startup']) ? $vars->meta['startup'] : null),
+                ($vars->meta['startup'] ?? null),
                 ['id' => 'startup']
             )
         );
@@ -341,6 +343,14 @@ class Tcadmin extends Module
             }
         }
 
+        // Fetch module
+        Loader::loadModels($this, ['ModuleManager']);
+        $module = $this->ModuleManager->getByClass(
+            \Illuminate\Support\Str::snake(get_class($this)),
+            Configure::get('Blesta.company_id')
+        );
+        $module = ($module[0] ?? []);
+        $this->view->set('module', (object) $module);
         $this->view->set('vars', (object)$vars);
         return $this->view->fetch();
     }
@@ -373,6 +383,14 @@ class Tcadmin extends Module
             }
         }
 
+        // Fetch module
+        Loader::loadModels($this, ['ModuleManager']);
+        $module = $this->ModuleManager->getByClass(
+            \Illuminate\Support\Str::snake(get_class($this)),
+            Configure::get('Blesta.company_id')
+        );
+        $module = ($module[0] ?? []);
+        $this->view->set('module', (object) $module);
         $this->view->set('vars', (object)$vars);
         return $this->view->fetch();
     }
@@ -472,7 +490,6 @@ class Tcadmin extends Module
      */
     public function deleteModuleRow($module_row)
     {
-
     }
 
     /**
@@ -493,7 +510,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
+                ($vars->hostname ?? ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -531,7 +548,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
+                ($vars->hostname ?? ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -569,7 +586,7 @@ class Tcadmin extends Module
         $hostname->attach(
             $fields->fieldText(
                 'hostname',
-                (isset($vars->hostname) ? $vars->hostname : ($vars->hostname ?? null)),
+                ($vars->hostname ?? ($vars->hostname ?? null)),
                 ['id' => 'hostname']
             )
         );
@@ -581,7 +598,7 @@ class Tcadmin extends Module
         $user_name->attach(
             $fields->fieldText(
                 'user_name',
-                (isset($vars->user_name) ? $vars->user_name : ($vars->user_name ?? null)),
+                ($vars->user_name ?? ($vars->user_name ?? null)),
                 ['id' => 'user_name']
             )
         );
@@ -841,32 +858,32 @@ class Tcadmin extends Module
         return [
             [
                 'key' => 'client_package_id',
-                'value' => (isset($vars['client_package_id']) ? $vars['client_package_id'] : ''),
+                'value' => ($vars['client_package_id'] ?? ''),
                 'encrypted' => 1
             ],
             [
                 'key' => 'hostname',
-                'value' => (isset($vars['hostname']) ? $vars['hostname'] : ''),
+                'value' => ($vars['hostname'] ?? ''),
                 'encrypted' => 1
             ],
             [
                 'key' => 'user_name',
-                'value' => (isset($vars['user_name']) ? $vars['user_name'] : ''),
+                'value' => ($vars['user_name'] ?? ''),
                 'encrypted' => 1
             ],
             [
                 'key' => 'user_password',
-                'value' => (isset($vars['user_password']) ? $vars['user_password'] : ''),
+                'value' => ($vars['user_password'] ?? ''),
                 'encrypted' => 1
             ],
             [
                 'key' => 'rcon_password',
-                'value' => (isset($vars['rcon_password']) ? $vars['rcon_password'] : ''),
+                'value' => ($vars['rcon_password'] ?? ''),
                 'encrypted' => 1
             ],
             [
                 'key' => 'private_password',
-                'value' => (isset($vars['private_password']) ? $vars['private_password'] : ''),
+                'value' => ($vars['private_password'] ?? ''),
                 'encrypted' => 1
             ],
         ];
@@ -933,40 +950,25 @@ class Tcadmin extends Module
                 'client_package_id' => $vars['client_package_id'],
             ];
             if ($package->meta->server_type === 'game') {
-                $fields['game_private'] = isset($vars['configoptions']['game_private'])
-                    ? $vars['configoptions']['game_private']
-                    : '';
-                $fields['game_slots'] = isset($vars['configoptions']['game_slots'])
-                    ? $vars['configoptions']['game_slots']
-                    : '';
-                $fields['game_branded'] = isset($vars['configoptions']['game_branded'])
-                    ? $vars['configoptions']['game_branded']
-                    : '';
+                $fields['game_private'] = $vars['configoptions']['game_private'] ?? '';
+                $fields['game_slots'] = $vars['configoptions']['game_slots'] ?? '';
+                $fields['game_branded'] = $vars['configoptions']['game_branded'] ?? '';
                 //      $fields['game_priority'] = $package->meta->priority;
             } elseif ($package->meta->server_type === 'voice') {
-                $fields['voice_private'] = isset($vars['configoptions']['voice_private'])
-                    ? $vars['configoptions']['voice_private']
-                    : '';
-                $fields['voice_slots'] = isset($vars['configoptions']['voice_slots'])
-                    ? $vars['configoptions']['voice_slots']
-                    : '';
-                $fields['voice_branded'] = isset($vars['configoptions']['voice_branded'])
-                    ? $vars['configoptions']['voice_branded']
-                    : '';
+                $fields['voice_private'] = $vars['configoptions']['voice_private'] ?? '';
+                $fields['voice_slots'] = $vars['configoptions']['voice_slots'] ?? '';
+                $fields['voice_branded'] = $vars['configoptions']['voice_branded'] ?? '';
                 //      $fields['voice_priority'] = $package->meta->priority;
-                $fields['voice_upload_quota'] = isset($vars['configoptions']['voice_upload_quota'])
-                    ? $vars['configoptions']['voice_upload_quota']
-                    : '';
-                $fields['voice_download_quota'] = isset($vars['configoptions']['voice_download_quota'])
-                    ? $vars['configoptions']['voice_download_quota']
-                    : '';
+                $fields['voice_upload_quota'] = $vars['configoptions']['voice_upload_quota'] ?? '';
+                $fields['voice_download_quota'] = $vars['configoptions']['voice_download_quota'] ?? '';
             }
 
             $this->log($row->meta->host_name . '|UpdateSettings', serialize($fields), 'input', true);
 
             $response = $tcadmin->updateUserSettings($fields);
 
-            if (!isset($response['results']['errorcode'])
+            if (
+                !isset($response['results']['errorcode'])
                 || (isset($response['results']['errorcode']) && $response['results']['errorcode'] != '0')
             ) {
                 $this->Input->setErrors(
@@ -1053,7 +1055,8 @@ class Tcadmin extends Module
 
             $response = $tcadmin->suspendServer($service_fields->client_package_id);
 
-            if (!isset($response['results']['errorcode'])
+            if (
+                !isset($response['results']['errorcode'])
                 || (isset($response['results']['errorcode']) && $response['results']['errorcode'] != '0')
             ) {
                 $this->Input->setErrors(
@@ -1116,7 +1119,8 @@ class Tcadmin extends Module
 
             $response = $tcadmin->unSuspendServer($service_fields->client_package_id);
 
-            if (!isset($response['results']['errorcode'])
+            if (
+                !isset($response['results']['errorcode'])
                 || (isset($response['results']['errorcode']) && $response['results']['errorcode'] != '0')
             ) {
                 $this->Input->setErrors(
@@ -1184,7 +1188,8 @@ class Tcadmin extends Module
 
             $response = $tcadmin->deleteServer($service_fields->client_package_id);
 
-            if (!isset($response['results']['errorcode'])
+            if (
+                !isset($response['results']['errorcode'])
                 || (isset($response['results']['errorcode']) && $response['results']['errorcode'] != '0')
             ) {
                 $this->Input->setErrors(
@@ -1367,74 +1372,56 @@ class Tcadmin extends Module
     private function getFieldsFromInput(array $vars, $package)
     {
 
-        $fields['client_id'] = isset($vars['client_id']) ? $vars['client_id'] : null;
-        $fields['user_email'] = isset($vars['client_email']) ? $vars['client_email'] : null;
-        $fields['user_fname'] = isset($vars['client_firstname']) ? $vars['client_firstname'] : null;
-        $fields['user_lname'] = isset($vars['client_lastname']) ? $vars['client_lastname'] : null;
-        $fields['user_address1'] = isset($vars['client_address1']) ? $vars['client_address1'] : null;
-        $fields['user_address2'] = isset($vars['client_address2']) ? $vars['client_address2'] : null;
-        $fields['user_city'] = isset($vars['client_city']) ? $vars['client_city'] : null;
-        $fields['user_state'] = isset($vars['client_state']) ? $vars['client_state'] : null;
-        $fields['user_zip'] = isset($vars['client_zip']) ? $vars['client_zip'] : null;
-        $fields['user_country'] = isset($vars['client_country']) ? $vars['client_country'] : null;
+        $fields['client_id'] = $vars['client_id'] ?? null;
+        $fields['user_email'] = $vars['client_email'] ?? null;
+        $fields['user_fname'] = $vars['client_firstname'] ?? null;
+        $fields['user_lname'] = $vars['client_lastname'] ?? null;
+        $fields['user_address1'] = $vars['client_address1'] ?? null;
+        $fields['user_address2'] = $vars['client_address2'] ?? null;
+        $fields['user_city'] = $vars['client_city'] ?? null;
+        $fields['user_state'] = $vars['client_state'] ?? null;
+        $fields['user_zip'] = $vars['client_zip'] ?? null;
+        $fields['user_country'] = $vars['client_country'] ?? null;
 
-        $fields['user_name'] = isset($vars['user_name']) ? $vars['user_name'] : null;
-        $fields['user_password'] = isset($vars['user_password']) ? $vars['user_password'] : null;
+        $fields['user_name'] = $vars['user_name'] ?? null;
+        $fields['user_password'] = $vars['user_password'] ?? null;
 
 
         if ($package->meta->server_type === 'game') {
-            $fields['game_package_id'] = isset($vars['client_package_id']) ? $vars['client_package_id'] : null;
+            $fields['game_package_id'] = $vars['client_package_id'] ?? null;
 
             $fields['game_id'] = $package->meta->supported_servers;
-            $fields['game_slots'] = isset($vars['configoptions']['game_slots'])
-                ? $vars['configoptions']['game_slots']
-                : null;
-            $fields['game_private'] = isset($vars['configoptions']['game_private'])
-                ? $vars['configoptions']['game_private']
-                : null;
+            $fields['game_slots'] = $vars['configoptions']['game_slots'] ?? null;
+            $fields['game_private'] = $vars['configoptions']['game_private'] ?? null;
             //      $fields['game_additional_slots'] = isset($vars['configoptions']['game_additional_slots'])
             //           ? $vars['configoptions']['game_additional_slots']
             //           : null;
-            $fields['game_branded'] = isset($vars['configoptions']['game_branded'])
-                ? $vars['configoptions']['game_branded']
-                : null;
+            $fields['game_branded'] = $vars['configoptions']['game_branded'] ?? null;
             $fields['game_start'] = $package->meta->start;
             $fields['game_priority'] = $package->meta->priority;
             $fields['game_startup'] = $package->meta->startup;
 
-            $fields['game_datacenter'] = isset($vars['configoptions']['game_datacenter'])
-                ? $vars['configoptions']['game_datacenter']
-                : null;
-            $fields['game_hostname'] = isset($vars['hostname']) ? $vars['hostname'] : null;
-            $fields['game_rcon_password'] = isset($vars['rcon_password']) ? $vars['rcon_password'] : null;
-            $fields['game_private_password'] = isset($vars['private_password']) ? $vars['private_password'] : null;
+            $fields['game_datacenter'] = $vars['configoptions']['game_datacenter'] ?? null;
+            $fields['game_hostname'] = $vars['hostname'] ?? null;
+            $fields['game_rcon_password'] = $vars['rcon_password'] ?? null;
+            $fields['game_private_password'] = $vars['private_password'] ?? null;
         } elseif ($package->meta->server_type === 'voice') {
-            $fields['voice_package_id'] = isset($vars['client_package_id']) ? $vars['client_package_id'] : null;
+            $fields['voice_package_id'] = $vars['client_package_id'] ?? null;
             $fields['voice_id'] = $package->meta->supported_servers;
-            $fields['voice_slots'] = isset($vars['configoptions']['voice_slots'])
-                ? $vars['configoptions']['voice_slots']
-                : null;
-            $fields['voice_private'] = isset($vars['configoptions']['voice_private'])
-                ? $vars['configoptions']['voice_private']
-                : null;
+            $fields['voice_slots'] = $vars['configoptions']['voice_slots'] ?? null;
+            $fields['voice_private'] = $vars['configoptions']['voice_private'] ?? null;
             //      $fields['voice_additional_slots'] = isset($vars['configoptions']['game_additional_slots'])
             //          ? $vars['configoptions']['game_additional_slots']
             //          : null;
-            $fields['voice_upload_quota'] = isset($vars['configoptions']['voice_upload_quota'])
-                ? $vars['configoptions']['voice_upload_quota']
-                : null;
-            $fields['voice_download_quota'] = isset($vars['configoptions']['voice_download_quota'])
-                ? $vars['configoptions']['voice_download_quota']
-                : null;
+            $fields['voice_upload_quota'] = $vars['configoptions']['voice_upload_quota'] ?? null;
+            $fields['voice_download_quota'] = $vars['configoptions']['voice_download_quota'] ?? null;
             $fields['voice_priority'] = $package->meta->priority;
             $fields['voice_startup'] = $package->meta->startup;
 
-            $fields['voice_datacenter'] = isset($vars['configoptions']['voice_datacenter'])
-                ? $vars['configoptions']['voice_datacenter']
-                : null;
-            $fields['voice_hostname'] = isset($vars['hostname']) ? $vars['hostname'] : null;
-            $fields['voice_rcon_password'] = isset($vars['rcon_password']) ? $vars['rcon_password'] : null;
-            $fields['voice_private_password'] = isset($vars['private_password']) ? $vars['private_password'] : null;
+            $fields['voice_datacenter'] = $vars['configoptions']['voice_datacenter'] ?? null;
+            $fields['voice_hostname'] = $vars['hostname'] ?? null;
+            $fields['voice_rcon_password'] = $vars['rcon_password'] ?? null;
+            $fields['voice_private_password'] = $vars['private_password'] ?? null;
         }
 
         return $fields;
@@ -1488,7 +1475,8 @@ class Tcadmin extends Module
             }
         }
 
-        if (!isset($response['results']['errorcode'])
+        if (
+            !isset($response['results']['errorcode'])
             || (isset($response['results']['errorcode']) && $response['results']['errorcode'] != '0')
         ) {
             $this->Input->setErrors(
