@@ -113,6 +113,19 @@ class Tcadmin extends Module
 
         $fields = new ModuleFields();
 
+        $fields->setHtml('
+            <script type="text/javascript">
+                document.addEventListener("change", function(e) {
+                    if (e.target && e.target.id === "server_type") {
+                        var moduleRow = document.getElementById("module_row");
+                        if (moduleRow) {
+                            moduleRow.dispatchEvent(new Event("change", { bubbles: true }));
+                        }
+                    }
+                });
+            </script>
+        ');
+
         // Fetch all packages available for the given server or server group
         $module_row = null;
         if (isset($vars->module_group)) {
@@ -157,7 +170,7 @@ class Tcadmin extends Module
                     'voice' => Language::_('Tcadmin.package_fields.voice_server', true),
                 ],
                 ($vars->meta['server_type'] ?? null),
-                ['id' => 'server_type', 'onChange' => 'fetchModuleOptions()']
+                ['id' => 'server_type']
             )
         );
         $fields->setField($server_type);
@@ -1469,16 +1482,35 @@ class Tcadmin extends Module
             $response = $tcadmin->getVoiceServers();
         }
 
+        // apiRequest returns a string on curl failure
+        if (!is_array($response)) {
+            $this->Input->setErrors(
+                ['api_response' => ['missing' => Language::_('Tcadmin.!error.api.internal', true)]]
+            );
+
+            $this->log(
+                $module_row->meta->host_name . '|get supported ' . $server_type . ' servers',
+                serialize($response),
+                'output',
+                false
+            );
+
+            return $servers;
+        }
+
         if (isset($response['results']['game'])) {
             foreach ($response['results']['game'] as $key => $value) {
                 $servers[$response['results']['game'][$key]['gameid']] = $response['results']['game'][$key]['name'];
             }
         }
 
-        if (
-            !isset($response['results']['errorcode'])
-            || (isset($response['results']['errorcode']) && $response['results']['errorcode'] != '0')
-        ) {
+        if (isset($response['results']['voice'])) {
+            foreach ($response['results']['voice'] as $key => $value) {
+                $servers[$response['results']['voice'][$key]['voiceid']] = $response['results']['voice'][$key]['name'];
+            }
+        }
+
+        if (isset($response['results']['errorcode']) && $response['results']['errorcode'] != '0') {
             $this->Input->setErrors(
                 ['api_response' => ['missing' => Language::_('Tcadmin.!error.api.internal', true)]]
             );

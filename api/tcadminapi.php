@@ -23,6 +23,11 @@ class Tcadminapi
     private $use_ssl;
 
     /**
+     * @var Blesta\Core\ServiceProviders\Logger Container logger
+     */
+    private $logger;
+
+    /**
      * Initializes the class
      */
     public function __construct($user_name, $password, $host_name, $port, $use_ssl)
@@ -77,24 +82,19 @@ class Tcadminapi
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         }
 
-        $host_name_output = "<?xml version='1.0'?><document>";
-        $host_name_output .= curl_exec($curl);
-        $host_name_output .= '</document>';
+        $result = curl_exec($curl);
         $error = curl_error($curl);
-
-        if (!empty($error)) {
-            $this->logger->error($error);
-        }
 
         curl_close($curl);
 
-        if ($host_name_output != false) {
-            $response = json_decode(json_encode(simplexml_load_string($host_name_output)), true);
-
-            return $response;
+        if (!empty($error)) {
+            $this->logger->error($error);
+            return $error;
         }
 
-        return $error;
+        $host_name_output = "<?xml version='1.0'?><document>" . $result . '</document>';
+
+        return json_decode(json_encode(simplexml_load_string($host_name_output)), true);
     }
 
     /**
