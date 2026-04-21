@@ -1,0 +1,410 @@
+{
+    "id": 1,
+    "name": "TCAdmin Configurable Options",
+    "description": "Configurable options for TCAdmin game and voice server provisioning",
+    "hidden": 0,
+    "hide_options": 0,
+    "options": [
+        {
+            "id": 1,
+            "label": "Game Slots",
+            "name": "game_slots",
+            "description": "Number of player slots for the game server",
+            "type": "quantity",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 1,
+                    "name": "",
+                    "value": "",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": 0,
+                    "max": null,
+                    "step": 1,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 1,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "label": "Game Private",
+            "name": "game_private",
+            "description": "Whether the game server is private",
+            "type": "checkbox",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 2,
+                    "name": "Yes",
+                    "value": "1",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": null,
+                    "max": null,
+                    "step": null,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 2,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "label": "Game Branded",
+            "name": "game_branded",
+            "description": "Whether the game server is branded",
+            "type": "checkbox",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 3,
+                    "name": "Yes",
+                    "value": "1",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": null,
+                    "max": null,
+                    "step": null,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 3,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "label": "Game Datacenter",
+            "name": "game_datacenter",
+            "description": "Datacenter identifier for the game server",
+            "type": "text",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 4,
+                    "name": "",
+                    "value": "",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": null,
+                    "max": null,
+                    "step": null,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 4,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "label": "Voice Slots",
+            "name": "voice_slots",
+            "description": "Number of slots for the voice server",
+            "type": "quantity",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 5,
+                    "name": "",
+                    "value": "",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": 0,
+                    "max": null,
+                    "step": 1,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 5,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "label": "Voice Private",
+            "name": "voice_private",
+            "description": "Whether the voice server is private",
+            "type": "checkbox",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 6,
+                    "name": "Yes",
+                    "value": "1",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": null,
+                    "max": null,
+                    "step": null,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 6,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "label": "Voice Branded",
+            "name": "voice_branded",
+            "description": "Whether the voice server is branded",
+            "type": "checkbox",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 7,
+                    "name": "Yes",
+                    "value": "1",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": null,
+                    "max": null,
+                    "step": null,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 7,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "label": "Voice Upload Quota",
+            "name": "voice_upload_quota",
+            "description": "Upload bandwidth/data quota for the voice server",
+            "type": "quantity",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 8,
+                    "name": "",
+                    "value": "",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": 0,
+                    "max": null,
+                    "step": 1,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 8,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "label": "Voice Download Quota",
+            "name": "voice_download_quota",
+            "description": "Download bandwidth/data quota for the voice server",
+            "type": "quantity",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 9,
+                    "name": "",
+                    "value": "",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": 0,
+                    "max": null,
+                    "step": 1,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 9,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "label": "Voice Datacenter",
+            "name": "voice_datacenter",
+            "description": "Datacenter identifier for the voice server",
+            "type": "text",
+            "addable": 1,
+            "editable": 1,
+            "hidden": 0,
+            "disable_pricing": 1,
+            "hide_on_invoice": 1,
+            "values": [
+                {
+                    "id": 10,
+                    "name": "",
+                    "value": "",
+                    "default": 0,
+                    "status": "active",
+                    "order": 0,
+                    "min": null,
+                    "max": null,
+                    "step": null,
+                    "image": null,
+                    "pricing": [
+                        {
+                            "id": 10,
+                            "term": 1,
+                            "period": "month",
+                            "price": "0.0000",
+                            "price_renews": "0.0000",
+                            "price_transfer": null,
+                            "setup_fee": "0.0000",
+                            "cancel_fee": "0.0000",
+                            "currency": "USD",
+                            "precision": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "condition_sets": []
+}
