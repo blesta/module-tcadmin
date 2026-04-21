@@ -19,7 +19,7 @@
             "values": [
                 {
                     "id": 1,
-                    "name": "",
+                    "name": "Game Slots",
                     "value": "",
                     "default": 0,
                     "status": "active",
@@ -179,7 +179,7 @@
             "values": [
                 {
                     "id": 5,
-                    "name": "",
+                    "name": "Voice Slots",
                     "value": "",
                     "default": 0,
                     "status": "active",
@@ -299,7 +299,7 @@
             "values": [
                 {
                     "id": 8,
-                    "name": "",
+                    "name": "Voice Upload Quota",
                     "value": "",
                     "default": 0,
                     "status": "active",
@@ -339,7 +339,7 @@
             "values": [
                 {
                     "id": 9,
-                    "name": "",
+                    "name": "Voice Download Quota",
                     "value": "",
                     "default": 0,
                     "status": "active",
