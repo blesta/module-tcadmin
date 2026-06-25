@@ -1,5 +1,5 @@
 {
-    "version": "2.0.0",
+    "version": "2.0.1",
     "name": "Tcadmin.name",
     "description": "Tcadmin.description",
     "authors": [
@@ -41,5 +41,8 @@
             "user_password"
         ]
     },
-    "icon": "bi-joystick"
+    "logo": {
+        "light": "views/default/images/logo.png",
+        "dark": "views/default/images/logo-dark.png"
+    }
 }
