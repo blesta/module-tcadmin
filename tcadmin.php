@@ -1420,6 +1420,9 @@ class Tcadmin extends Module
             //      $fields['voice_additional_slots'] = isset($vars['configoptions']['game_additional_slots'])
             //          ? $vars['configoptions']['game_additional_slots']
             //          : null;
+            $fields['voice_branded'] = isset($vars['configoptions']['voice_branded'])
+                ? $vars['configoptions']['voice_branded']
+                : null;
             $fields['voice_upload_quota'] = isset($vars['configoptions']['voice_upload_quota'])
                 ? $vars['configoptions']['voice_upload_quota']
                 : null;
