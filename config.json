@@ -1,5 +1,5 @@
 {
-    "version": "1.9.0",
+    "version": "2.0.1",
     "name": "Tcadmin.name",
     "description": "Tcadmin.description",
     "authors": [
@@ -21,8 +21,17 @@
         "group": "Tcadmin.module_group"
     },
     "email_tags": {
-        "module": ["host_name", "port"],
-        "package": ["supported_servers", "server_type", "start", "priority", "startup"],
+        "module": [
+            "host_name",
+            "port"
+        ],
+        "package": [
+            "supported_servers",
+            "server_type",
+            "start",
+            "priority",
+            "startup"
+        ],
         "service": [
             "client_package_id",
             "hostname",
@@ -31,5 +40,9 @@
             "user_name",
             "user_password"
         ]
+    },
+    "logo": {
+        "light": "views/default/images/logo.png",
+        "dark": "views/default/images/logo-dark.png"
     }
 }

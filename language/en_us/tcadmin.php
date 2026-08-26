@@ -9,11 +9,15 @@ $lang['Tcadmin.module_row'] = "Server";
 $lang['Tcadmin.module_row_plural'] = "Servers";
 $lang['Tcadmin.module_group'] = "Server Group";
 
+$lang['Tcadmin.back_to_manage'] = 'Back';
+
 // Module management
 $lang['Tcadmin.add_module_row'] = "Add Server";
 $lang['Tcadmin.add_module_group'] = "Add Server Group";
 $lang['Tcadmin.manage.module_rows_title'] = "Servers";
 $lang['Tcadmin.manage.module_groups_title'] = "Server Groups";
+$lang['Tcadmin.manage.tab_rows'] = 'Servers';
+$lang['Tcadmin.manage.tab_groups'] = 'Server Groups';
 $lang['Tcadmin.manage.module_rows_heading.name'] = "Server Label";
 $lang['Tcadmin.manage.module_rows_heading.hostname'] = "Hostname";
 $lang['Tcadmin.manage.module_rows_heading.port'] = "Port";
